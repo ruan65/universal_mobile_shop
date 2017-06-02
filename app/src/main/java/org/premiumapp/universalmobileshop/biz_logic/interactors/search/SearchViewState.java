@@ -1,4 +1,4 @@
-package org.premiumapp.universalmobileshop.biz_logic.interactors;
+package org.premiumapp.universalmobileshop.biz_logic.interactors.search;
 
 import org.premiumapp.universalmobileshop.biz_logic.model.Product;
 
@@ -55,6 +55,31 @@ public interface SearchViewState {
             return "SearchResult{" +
                     "searchQueryText='" + searchQueryText + '\'' +
                     ", result=" + result +
+                    '}';
+        }
+    }
+
+    final class Error implements SearchViewState {
+        private final String searchQueryText;
+        private final Throwable error;
+
+        public Error(String searchQueryText, Throwable error) {
+            this.searchQueryText = searchQueryText;
+            this.error = error;
+        }
+
+        public String getSearchQueryText() {
+            return searchQueryText;
+        }
+
+        public Throwable getError() {
+            return error;
+        }
+
+        @Override public String toString() {
+            return "Error{" +
+                    "searchQueryText='" + searchQueryText + '\'' +
+                    ", error=" + error +
                     '}';
         }
     }
